@@ -4,7 +4,7 @@
 )
 #let BULLETS_FN = (level) => {
   set text(fill: COLORS.primary)
-  ([•], [‣]).at(level)
+  ([•], [‣], [◦]).at(level)
 }
 
 #let SLIDE_INSET = 2cm
