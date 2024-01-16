@@ -32,6 +32,13 @@
     #set list(marker: BULLETS_FN)
     #p
   ]
+
+  show figure.caption: p => [
+    #set text(size: 14pt);
+    #p
+  ]
+
+  set text(font: "Roboto Slab")
   doc
 }
 
