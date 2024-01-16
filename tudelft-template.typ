@@ -7,6 +7,9 @@
   ([•], [‣], [◦]).at(level)
 }
 
+#let HEADER_FONT = "Roboto Slab"
+#let TEXT_FONT   = "Noto Sans"
+
 #let SLIDE_INSET = 2cm
 #let SPACING = 1cm
 #let PROGRESS_BAR_HEIGHT = 0.5cm
@@ -28,24 +31,18 @@
     paper: "presentation-16-9",
     margin: (x: 0cm, y: 0cm),
   )
-  show list: p => [
-    #set list(marker: BULLETS_FN)
-    #p
-  ]
 
-  show figure.caption: p => [
-    #set text(size: 14pt);
-    #p
-  ]
+  show list: p => [ #set list(marker: BULLETS_FN); #p ]
+  show figure.caption: p => [ #set text(size: 14pt); #p ]
 
-  set text(font: "Roboto Slab")
+  set text(font: TEXT_FONT)
   doc
 }
 
 #let show_heading(
   body,
   fill: COLORS.primary,
-  font: "Roboto Slab",
+  font: HEADER_FONT,
   weight: "medium",
 ) = [
   #show heading: it => [
@@ -109,6 +106,7 @@
       ])
     )
 }
+
 #let topic-slide(title, subtitle: none) = {
   bare-slide(
     rect(width: 100%, inset: (x: SLIDE_INSET, y: 0cm), fill: COLORS.primary, stroke: none, 
@@ -151,7 +149,7 @@
       ],
       [
         #set text(
-          font: "Noto Serif Display",
+          font: TEXT_FONT,
           size: CONTENT_SLIDE.text_font_size,
         )
 
@@ -186,4 +184,35 @@
   #place(dy: -100% - 1em)[
     #body
   ]
+]
+
+#let title-bg-slide(
+  title: "Title Placeholder",
+  subtitle: "Subtitle Placeholder"
+) = bare-bg-slide[
+  #box(
+    inset: 2cm,
+    width: 100%,
+    height: 100%,
+    show_heading(
+      fill: white,
+      align(right + bottom, [
+        #show heading.where(level: 1): it => [
+          #set text(size: 36pt)
+          #it
+        ]
+        #show heading.where(level: 2): it => [
+          #set text(size: 24pt)
+          #it
+        ]
+        
+        #stack(
+          dir: ttb,
+          spacing: 1cm,
+          [ = #title ],
+          [ == #subtitle ]
+        )
+      ])
+    )
+  )
 ]
